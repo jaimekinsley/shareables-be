@@ -76,4 +76,24 @@ describe('app routes', () => {
         });
       });
   });
+
+  it('deletes a bird by id', async() => {
+    const { _id } = await Bird.create({
+      bird: 'blue jay',
+      season: 'spring'
+    });
+
+    return request(app)
+      .delete(`/birds/${_id}`)
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: _id.toString(),
+          bird: 'blue jay',
+          season: 'spring',
+          spotted: 1,
+          __v: 0
+        });
+      });
+  });
+
 });
