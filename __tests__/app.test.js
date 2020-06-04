@@ -103,7 +103,8 @@ describe('app routes', () => {
     });
 
     const birdUpdate = {
-      bird: 'cardinal'
+      bird: 'cardinal',
+      season: 'summer'
     };
 
     return request(app)
@@ -113,7 +114,7 @@ describe('app routes', () => {
         expect(res.body).toEqual({
           _id: _id.toString(),
           bird: 'cardinal',
-          season: 'spring',
+          season: 'summer',
           spotted: 1,
           __v: 0
         });
