@@ -96,4 +96,28 @@ describe('app routes', () => {
       });
   });
 
+  it('updates a bird by id', async() => {
+    const { _id } = await Bird.create({
+      bird: 'blue jay',
+      season: 'spring'
+    });
+
+    const birdUpdate = {
+      bird: 'cardinal'
+    };
+
+    return request(app)
+      .patch(`/birds/${_id}`)
+      .send(birdUpdate)
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: _id.toString(),
+          bird: 'cardinal',
+          season: 'spring',
+          spotted: 1,
+          __v: 0
+        });
+      });
+  });
+
 });
