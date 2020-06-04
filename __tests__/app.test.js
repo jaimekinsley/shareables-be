@@ -57,4 +57,23 @@ describe('app routes', () => {
         ]);
       });
   });
+
+  it('gets a bird by id', async() => {
+    const { _id } = await Bird.create({
+      bird: 'raven',
+      season: 'winter'
+    });
+
+    return request(app)
+      .get(`/birds/${_id}`)
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: _id.toString(),
+          bird: 'raven',
+          season: 'winter',
+          spotted: 1,
+          __v: 0
+        });
+      });
+  });
 });
