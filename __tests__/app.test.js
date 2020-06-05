@@ -20,7 +20,7 @@ describe('app routes', () => {
 
   afterAll(() => {
     return mongoose.connection.close()
-    .then(()=>mongo.stop());
+      .then(()=>mongo.stop());
   });
 
   it('creates a new bird', () => {
